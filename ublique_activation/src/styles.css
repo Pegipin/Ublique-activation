@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-table,
+mat-form-field {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.default {
+  cursor: default;
+}
+.left-icon {
+  padding-right: 36px;
+}
+
+.custom-paginator {
+  position: relative;
+  align-content: end;
+  display: inline-block;
+  margin-right: 0px;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+

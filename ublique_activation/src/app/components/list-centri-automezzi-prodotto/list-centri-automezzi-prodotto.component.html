@@ -1,0 +1,95 @@
+<div class="row no-gutters table-container">
+  <div class="col-md-12">
+    <!-- CONTENT -->
+    <mat-toolbar class='margin-activation' color="primary">
+      <span> List of Activation </span>
+    </mat-toolbar>
+
+    <div class="container-btn">
+      <button  type="button" style="font-size: large" mat-raised-button color="primary" (click)="onClickAddBU()">
+        <mat-icon class="plus">+</mat-icon>
+        Add
+      </button>
+    </div>
+
+    <div *ngIf="dataSource?.data?.length <= 0">No records to display.</div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="logisticcenter">
+        <th mat-header-cell *matHeaderCellDef>Logistic Center</th>
+        <td mat-cell *matCellDef="let element">
+          {{ getLogisticCenter(element.logisticcenter) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="baseproduct">
+        <th mat-header-cell *matHeaderCellDef>Base Product</th>
+        <td mat-cell *matCellDef="let element">
+          {{ getProductDescription(element.baseproduct) }}
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="activated">
+        <th mat-header-cell *matHeaderCellDef>Demand Planning</th>
+
+        <td mat-cell *matCellDef="let element" >
+          <mat-icon *ngIf="element.demandplanningactive == 1" class="material-symbols-outlined" class="green-done">
+          done
+          </mat-icon>
+
+          <mat-icon *ngIf="element.demandplanningactive == 0" class="material-symbols-outlined" class="red-close">
+            close
+          </mat-icon>
+
+          {{ getProductDescription(element.activated) }}
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="demandplanningactive">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+
+          <button *ngIf="element.demandplanningactive == 1" mat-mini-fab type="button"
+            matTooltip="Activate" (click)="onStop(element)" class="green" >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+
+          <button *ngIf="element.demandplanningactive == 0" mat-mini-fab  type="button"
+            matTooltip="Disactivate" (click)="onPlay(element)" color="warn" >
+            <mat-icon>stop</mat-icon>
+        </button>
+
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+
+          <button mat-mini-fab color="primary"  type="button" matTooltip="Delete" (click)="onDelete(element)" >
+            <mat-icon>delete</mat-icon>
+          </button>
+
+
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br />
+
+    <div >
+      <mat-paginator [pageIndex]="pageNumber" [pageSize]="pageSize" [length]="totalRecords"
+        [pageSizeOptions]="[5, 10, 20, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>
